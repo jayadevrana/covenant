@@ -9,7 +9,9 @@
     "lint": "eslint",
     "test": "vitest run",
     "smoke:openai": "tsx scripts/smoke-openai.ts",
-    "smoke:compiler": "tsx scripts/smoke-policy-compiler.ts"
+    "smoke:compiler": "tsx scripts/smoke-policy-compiler.ts",
+    "smoke:agent": "tsx scripts/smoke-golden-agent.ts",
+    "smoke:immunity": "tsx scripts/smoke-immunity.ts"
   },
   "dependencies": {
     "@noble/hashes": "^2.2.0",
