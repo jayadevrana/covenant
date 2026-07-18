@@ -29,6 +29,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       {children}
+      <footer className="border-t border-white/8 px-6 py-8 text-center text-xs leading-5 text-slate-400">
+        Sandbox sessions are ephemeral. A cold start may expire a run; start a fresh fixture run to continue.
+      </footer>
     </div>
   );
 }

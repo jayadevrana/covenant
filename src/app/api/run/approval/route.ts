@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { resolveApproval } from "@lib/agent";
-import { getRun, saveRun } from "@lib/agent/store";
+import { getRun, saveRun, SESSION_EXPIRED_MESSAGE } from "@lib/agent/store";
 
 export const runtime = "nodejs";
 
@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     approved?: unknown;
   };
   const run = typeof body.runId === "string" ? getRun(body.runId) : undefined;
-  if (!run) return NextResponse.json({ error: "Run not found." }, { status: 404 });
+  if (!run) return NextResponse.json({ error: SESSION_EXPIRED_MESSAGE }, { status: 404 });
   if (typeof body.approved !== "boolean") {
     return NextResponse.json({ error: "approved must be a boolean." }, { status: 400 });
   }

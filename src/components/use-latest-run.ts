@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import type { AgentRun } from "../../lib/agent";
+import { fetchWithTimeout } from "./fetch-with-timeout";
 
 const STORAGE_KEY = "covenant.latestRunId";
 
@@ -30,11 +31,14 @@ export function useLatestRun() {
     setLoading(true);
     setLoadError(null);
     try {
-      const response = await fetch(`/api/run/${encodeURIComponent(runId)}`, {
+      const response = await fetchWithTimeout(`/api/run/${encodeURIComponent(runId)}`, {
         cache: "no-store",
       });
       const payload = (await response.json()) as { run?: AgentRun; error?: string };
-      if (!response.ok || !payload.run) throw new Error(payload.error ?? "Run not found");
+      if (!response.ok || !payload.run) {
+        if (response.status === 404) window.localStorage.removeItem(STORAGE_KEY);
+        throw new Error(payload.error ?? "Sandbox session expired — start a fresh run.");
+      }
       setRunState(payload.run);
     } catch (error) {
       setLoadError(error instanceof Error ? error.message : String(error));

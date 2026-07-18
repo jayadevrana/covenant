@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { getRun } from "@lib/agent/store";
+import { getRun, SESSION_EXPIRED_MESSAGE } from "@lib/agent/store";
 import { decideImmunityReview, getImmunitySession } from "@lib/immunity";
 import { appendReceipt } from "@lib/receipts";
 
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     decision?: unknown;
   };
   const run = typeof body.runId === "string" ? getRun(body.runId) : undefined;
-  if (!run) return NextResponse.json({ error: "Run not found." }, { status: 404 });
+  if (!run) return NextResponse.json({ error: SESSION_EXPIRED_MESSAGE }, { status: 404 });
   if (body.decision !== "approve" && body.decision !== "reject") {
     return NextResponse.json({ error: "Decision must be approve or reject." }, { status: 400 });
   }

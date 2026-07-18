@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import type { ImmunityReview } from "../../lib/immunity";
 import type { EvalResult, Patch, Policy, ReceiptEvent } from "../../lib/schemas";
+import { fetchWithTimeout } from "./fetch-with-timeout";
 import { useLatestRun } from "./use-latest-run";
 
 const DEFAULT_CORRECTION =
@@ -50,7 +51,7 @@ export function ImmunityScreen() {
     setBusy(true);
     setError(null);
     try {
-      const response = await fetch("/api/correction/compile", {
+      const response = await fetchWithTimeout("/api/correction/compile", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -92,7 +93,7 @@ export function ImmunityScreen() {
     setBusy(true);
     setError(null);
     try {
-      const response = await fetch("/api/correction/decision", {
+      const response = await fetchWithTimeout("/api/correction/decision", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ runId: run.id, decision }),

@@ -1,5 +1,7 @@
 import type { AgentRun } from "./types";
 
+export const SESSION_EXPIRED_MESSAGE = "Sandbox session expired — start a fresh run.";
+
 const globalStore = globalThis as typeof globalThis & {
   covenantRuns?: Map<string, AgentRun>;
 };

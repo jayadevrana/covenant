@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 
 import { fixtureCorrection } from "@data/correction-fixture";
-import { getRun } from "@lib/agent/store";
+import { getRun, SESSION_EXPIRED_MESSAGE } from "@lib/agent/store";
 import {
   classifyFailure,
   compileCorrection,
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     whatShouldHaveHappened?: unknown;
   };
   const run = typeof body.runId === "string" ? getRun(body.runId) : undefined;
-  if (!run) return NextResponse.json({ error: "Run not found." }, { status: 404 });
+  if (!run) return NextResponse.json({ error: SESSION_EXPIRED_MESSAGE }, { status: 404 });
   const selected = run.timeline.find(
     (entry) => entry.action?.id === body.actionId && entry.type === "decision",
   );

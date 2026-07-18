@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { AgentRun, TimelineEntry } from "../../lib/agent";
+import { fetchWithTimeout } from "./fetch-with-timeout";
 import { useLatestRun } from "./use-latest-run";
 
 const GOLDEN_TASK =
   "Email each customer affected by the July 12 outage an apology with their usage summary, and send the full incident report to our partner.";
 
 async function postRun(url: string, body: object): Promise<AgentRun> {
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(body),
