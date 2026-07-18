@@ -43,6 +43,8 @@ The product experience follows one coherent four-screen story: a landing page ex
 
 The target user is a developer shipping agents that can communicate, publish, or move data. Covenant addresses the gap between “the agent was instructed” and “the action was actually authorized.” It can reduce accidental side effects, make approvals payload-specific, give incident reviewers a tamper-evident export, and turn production corrections into repeatable regression coverage. The framework-neutral wrapper works anywhere Node.js tool execution can be intercepted.
 
+The timing is concrete: the EU AI Act's record-keeping obligations (Article 12) begin applying to high-risk AI systems from August 2, 2026 — two weeks after this hackathon — and require automatically recorded, traceable event logs over a system's lifetime. Covenant's hash-linked, exportable action receipts and policy-versioned decisions are exactly the shape of evidence those audits ask for, produced as a side effect of normal agent operation rather than as an afterthought.
+
 ## Judging criterion 4 — Quality of the Idea
 
 Policy engines, approval systems, eval platforms, and audit products exist separately. Covenant’s novel product unit is the complete correction-immunity transaction: a human describes what should have happened; GPT-5.6 proposes both a regression case and a typed rule change; the pure runtime engine proves the new case fails before and passes after; every prior eval replays; and a human decides whether policy version two exists. The model cannot silently edit its own guardrail.
