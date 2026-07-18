@@ -12,7 +12,7 @@
 
 **Demo URL:** https://covenant-umber.vercel.app
 
-**Video URL:** `YOUTUBE_URL_PENDING`
+**Video URL:** https://youtu.be/aYhlLSDse2U
 
 ## Short description
 
