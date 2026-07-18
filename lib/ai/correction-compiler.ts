@@ -148,17 +148,21 @@ This is a suggestion only: the human must approve it, and deterministic replay v
 The generated eval must have origin correction and reference the correction id.
 The patch status must be proposed. Do not claim it is active.
 Every trace args object must include every schema key, using null for unused keys.
-Condition nodes include every key; unused keys are null and non-leaf value is null.`;
+Condition nodes include every key; unused keys are null and non-leaf value is null.
+The generated eval must fail against the supplied current policy and pass only after the candidate patch.
+Never weaken the existing block on customer data sent externally.
+For a correction asking for a redacted partner summary, synthesize that redacted send with attachment name redacted_incident_summary and public data; expect require_approval; add a narrow require_approval rule matching an external domain, that attachment name, and contains_customer_data=false.`;
 
 export interface CompileCorrectionOptions {
   client: ResponsesClient;
   correction: Correction;
   policy: Policy;
   selectedAction: ProposedAction;
+  failureClass?: (typeof failureClasses)[number];
   model?: string;
 }
 
-export function compileCorrection(
+export async function compileCorrection(
   options: CompileCorrectionOptions,
 ): Promise<CompilerResult<CorrectionCompilation>> {
   const input = z
@@ -169,7 +173,7 @@ export function compileCorrection(
     })
     .safeParse(options);
   if (!input.success) {
-    return Promise.resolve({
+    return {
       ok: false,
       error: {
         code: "invalid_input",
@@ -178,9 +182,9 @@ export function compileCorrection(
       },
       model: options.model ?? "gpt-5.6",
       attempts: 0,
-    });
+    };
   }
-  return compileStructured({
+  const result = await compileStructured({
     client: options.client,
     model: options.model,
     formatName: "covenant_correction",
@@ -189,11 +193,19 @@ export function compileCorrection(
     systemPrompt: CORRECTION_COMPILER_PROMPT,
     userPrompt: JSON.stringify({
       correction: input.data.correction,
+      preclassified_failure: options.failureClass ?? null,
       current_policy: input.data.policy,
       selected_action: input.data.selectedAction,
     }),
     reasoningEffort: "low",
   });
+  if (result.ok && options.failureClass) {
+    return {
+      ...result,
+      data: { ...result.data, failure_class: options.failureClass },
+    };
+  }
+  return result;
 }
 
 export type { Patch };

@@ -138,11 +138,13 @@ describe("correction compiler", () => {
       correction,
       policy: seedPolicy,
       selectedAction: goldenTrace[4],
+      failureClass: "execution_error",
     });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.data.generated_eval.correction_id).toBe(correction.id);
+    expect(result.data.failure_class).toBe("execution_error");
     expect(result.data.candidate_patch.status).toBe("proposed");
     expect(mock.requests[0].text.format).toMatchObject({
       type: "json_schema",

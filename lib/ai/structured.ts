@@ -63,6 +63,7 @@ export interface CompileStructuredOptions<T> {
   systemPrompt: string;
   userPrompt: string;
   reasoningEffort?: "low" | "medium";
+  maxOutputTokens?: number;
 }
 
 type ResponseShape = {
@@ -96,7 +97,7 @@ function makeRequest<T>(options: CompileStructuredOptions<T>): StructuredRespons
   return {
     model: options.model ?? DEFAULT_AI_MODEL,
     reasoning: { effort: options.reasoningEffort ?? "low" },
-    max_output_tokens: MAX_COMPILER_OUTPUT_TOKENS,
+    max_output_tokens: options.maxOutputTokens ?? MAX_COMPILER_OUTPUT_TOKENS,
     input: [
       { role: "system", content: [{ type: "input_text", text: options.systemPrompt }] },
       { role: "user", content: [{ type: "input_text", text: options.userPrompt }] },
