@@ -18,7 +18,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <nav aria-label="Product screens" className="flex items-center gap-1">
             {navigation.map((item) => (
               <Link
-                className="rounded-lg px-3 py-2 text-xs font-medium text-slate-400 transition hover:bg-white/5 hover:text-white md:text-sm"
+                className="rounded-lg px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/5 hover:text-white md:text-sm"
                 href={item.href}
                 key={item.href}
               >

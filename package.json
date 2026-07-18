@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "smoke:openai": "tsx scripts/smoke-openai.ts",
     "smoke:compiler": "tsx scripts/smoke-policy-compiler.ts",
     "smoke:agent": "tsx scripts/smoke-golden-agent.ts",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

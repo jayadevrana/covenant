@@ -28,14 +28,14 @@ export default function Home() {
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-5 shadow-2xl shadow-cyan-950/20">
             <div className="flex items-center justify-between border-b border-white/8 pb-4">
-              <span className="font-mono text-xs text-slate-500">DETERMINISTIC DECISION</span>
+              <span className="font-mono text-xs text-slate-300">DETERMINISTIC DECISION</span>
               <span className="rounded-full border border-rose-300/30 bg-rose-300/10 px-2.5 py-1 text-[10px] font-bold text-rose-200">BLOCK</span>
             </div>
             <div className="space-y-4 py-5 font-mono text-xs leading-6 text-slate-400">
-              <p><span className="text-slate-600">tool</span> send_email</p>
-              <p><span className="text-slate-600">derived.external_domains</span> [partnerco.example]</p>
-              <p><span className="text-slate-600">derived.contains_customer_data</span> true</p>
-              <p><span className="text-slate-600">matched_rule</span> block-customer-data-external</p>
+              <p><span className="text-slate-400">tool</span> send_email</p>
+              <p><span className="text-slate-400">derived.external_domains</span> [partnerco.example]</p>
+              <p><span className="text-slate-400">derived.contains_customer_data</span> true</p>
+              <p><span className="text-slate-400">matched_rule</span> block-customer-data-external</p>
             </div>
             <div className="border-t border-white/8 pt-4 text-sm text-slate-300">The leak never reaches the sandbox tool.</div>
           </div>
@@ -48,7 +48,7 @@ export default function Home() {
             <article className="bg-[#080b10] p-6" key={item.number}>
               <span className="font-mono text-xs text-cyan-300">{item.number}</span>
               <h2 className="mt-8 text-xl font-semibold">{item.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-500">{item.text}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-400">{item.text}</p>
             </article>
           ))}
         </div>
@@ -57,7 +57,7 @@ export default function Home() {
           <ScreenLink href="/receipts" label="Receipt chain" text="Inspect, verify, and export the current run's evidence." />
           <ScreenLink href="/immunity" label="Immunity lab" text="Correct a decision and prove the patch before activation." />
         </div>
-        <p className="mt-14 max-w-3xl text-xs leading-6 text-slate-600">
+        <p className="mt-14 max-w-3xl text-xs leading-6 text-slate-400">
           Prototype safety layer. In-process enforcement is bypassable by code that does not route through it and is not proof that agents are universally safe. Receipts are tamper-evident within their export, not cryptographic signatures.
         </p>
       </section>
@@ -72,7 +72,7 @@ function ScreenLink({ href, label, text }: { href: string; label: string; text: 
         <h2 className="font-semibold">{label}</h2>
         <span className="text-cyan-300 transition group-hover:translate-x-1">→</span>
       </div>
-      <p className="mt-3 text-sm leading-6 text-slate-500">{text}</p>
+      <p className="mt-3 text-sm leading-6 text-slate-400">{text}</p>
     </Link>
   );
 }
