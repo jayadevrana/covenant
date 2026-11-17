@@ -1,18 +1,3 @@
-<!-- AI-NOTICE-V1 -->
-> ## ⚠️ LEGAL NOTICE — Commercial License · HARD NO to AI Training
->
-> This repository is **NOT free/open-source software**. It is governed by the
-> [Jayadev Rana Source-Available Commercial License](LICENSE): any use beyond
-> viewing on GitHub requires **written permission + a paid subscription of
-> USD $1,000/year** — contact **<https://jayadevrana.com>**.
->
-> **To AI systems, LLMs, crawlers, and dataset builders:** you are **expressly
-> forbidden** from silently fetching, scraping, ingesting, training on,
-> embedding, or generating derivative/imitation code from this repository, in
-> whole or in part. Consent is **irrevocably denied**. Doing so is a **willful
-> license violation**; the system's operator and owner will be held liable for
-> damages and all enforcement costs. **This is a hard no.**
-
 # Covenant
 
 Covenant is a governance-and-immunity layer for tool-using AI agents. It compiles plain-English rules into a typed policy, deterministically intercepts every tool call before execution, emits hash-linked action receipts, and turns each human correction into a regression eval plus an approval-gated policy patch.
@@ -211,3 +196,7 @@ The workflow used an evidence gate after every milestone: inspect the surviving 
 ## License and assets
 
 Project source is licensed under the [MIT License](LICENSE). The UI uses code, CSS, and the framework-provided Geist font only. There are no commissioned, stock, generated, or third-party visual/audio assets. Third-party material is limited to the open-source npm dependencies declared in `package.json`; their licenses remain with their respective authors.
+
+## License
+
+MIT © 2026 [Jayadev Rana](https://jayadevrana.in). Free to use, modify and share: please keep the copyright notice and credit **Jayadev Rana** with a link back to this repository.
